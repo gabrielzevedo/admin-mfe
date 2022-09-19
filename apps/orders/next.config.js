@@ -24,11 +24,14 @@ const nextConfig = {
     } else {
       config.plugins.push(
         new NextFederationPlugin({
-          name: 'shell',
+          name: 'orders',
           filename: 'static/chunks/remoteEntry.js',
           remotes: {
             shell: `shell@${process.env.NEXT_PUBLIC_SHELL_URL}/_next/static/chunks/remoteEntry.js`,
             orders: `orders@${process.env.NEXT_PUBLIC_ORDERS_URL}/_next/static/chunks/remoteEntry.js`,
+          },
+          exposes: {
+            './details-button': './components/details-button/details-button.tsx',
           },
           shared: {},
         }),

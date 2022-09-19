@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/shell",
+  "sourceRoot": "apps/orders",
   "projectType": "application",
   "targets": {
     "build": {
@@ -8,12 +8,12 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/shell",
-        "outputPath": "dist/apps/shell"
+        "root": "apps/orders",
+        "outputPath": "dist/apps/orders"
       },
       "configurations": {
         "development": {
-          "outputPath": "apps/shell"
+          "outputPath": "apps/orders"
         },
         "production": {}
       }
@@ -22,17 +22,17 @@
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "shell:build",
+        "buildTarget": "orders:build",
         "dev": true,
-        "port": 4200
+        "port": 4300
       },
       "configurations": {
         "development": {
-          "buildTarget": "shell:build:development",
+          "buildTarget": "orders:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "shell:build:production",
+          "buildTarget": "orders:build:production",
           "dev": false
         }
       }
@@ -40,14 +40,14 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "shell:build:production"
+        "buildTarget": "orders:build:production"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/shell"],
+      "outputs": ["coverage/apps/orders"],
       "options": {
-        "jestConfig": "apps/shell/jest.config.ts",
+        "jestConfig": "apps/orders/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -55,7 +55,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/shell/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/orders/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
