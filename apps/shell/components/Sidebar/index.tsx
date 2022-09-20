@@ -1,18 +1,20 @@
-import { Sidebar as SidebarComponent, SidebarItem } from '@loja-integrada/admin-components'
+import {
+  Sidebar as SidebarComponent,
+  SidebarItem,
+} from '@loja-integrada/admin-components';
+import { useRouter } from 'apps/shell/context/router';
 
 const Sidebar = () => {
-  const LI_APP_DOMAIN = 'http://app.lojaintegrada-local.com.br/painel'
+  const LI_APP_DOMAIN = 'http://app.lojaintegrada-local.com.br/painel';
+  const { handleRoute } = useRouter();
+
   return (
     <SidebarComponent fixed className="mt-16">
-      <SidebarItem
-        title="Início"
-        icon="home"
-        href={`${LI_APP_DOMAIN}`}
-      />
+      <SidebarItem title="Início" icon="home" href={`${LI_APP_DOMAIN}`} />
       <SidebarItem
         title="Vendas"
         icon="order"
-        href={`${LI_APP_DOMAIN}/pedido/listar`}
+        onClick={() => handleRoute('Orders')}
       />
       <SidebarItem
         title="Produtos"
@@ -45,7 +47,7 @@ const Sidebar = () => {
         href={`${LI_APP_DOMAIN}/plataforma/conta/configuracao/editar`}
       />
     </SidebarComponent>
-  )
-}
+  );
+};
 
 export default Sidebar;

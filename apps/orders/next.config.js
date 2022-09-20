@@ -31,7 +31,7 @@ const nextConfig = {
             orders: `orders@${process.env.NEXT_PUBLIC_ORDERS_URL}/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
-            './details-button': './components/details-button/details-button.tsx',
+            './ordersIndex': './pages/index.tsx',
           },
           shared: {},
         }),

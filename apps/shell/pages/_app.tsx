@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { RouterProvider } from '../context/router';
 import '../styles/global.scss'
 
 function CustomApp({ Component, pageProps }: AppProps) {
@@ -9,7 +10,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Painel de controle</title>
       </Head>
       <main className="app">
-        <Component {...pageProps} />
+        <RouterProvider>
+          <Component {...pageProps} />
+        </RouterProvider>
       </main>
     </>
   );

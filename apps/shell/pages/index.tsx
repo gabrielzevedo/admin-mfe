@@ -1,36 +1,37 @@
 import dynamic from 'next/dynamic';
-import { Button, Box } from '@loja-integrada/admin-components';
-import { useState } from 'react';
+import React from 'react';
 import Topbar from '../components/Topbar';
 import Sidebar from '../components/Sidebar';
 import Container from '../components/Container';
+import { useRouter } from '../context/router';
 
-const DetailsButton = dynamic<{ children: string }>(
+const Empty = () => {
+  return <></>
+}
+
+const DynamicApp = (route: string) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: Cannot find module
-  async () => import('orders/details-button'),
-  {
+  return dynamic(() => import(`../components/${route}`), {
     ssr: false,
-  }
-);
+  });
+}
 
 export function Index() {
-  const [showOrders, setShowOrders] = useState(false);
+  const { route } = useRouter();
+  const AppComponent = route ? DynamicApp(route) : Empty
 
   return (
     <>
       <Topbar />
       <Sidebar />
       <Container>
-        <Box>
-          <Box.Content>
-            <Button onClick={() => setShowOrders(true)}>Ver pedidos</Button>
-            {showOrders && <DetailsButton>Detalhes</DetailsButton>}
-          </Box.Content>
-        </Box>
+        <AppComponent />
       </Container>
     </>
   );
 }
 
-export default Index;
+export default dynamic(() => Promise.resolve(Index), {
+  ssr: false,
+});
