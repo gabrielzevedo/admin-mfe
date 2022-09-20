@@ -1,5 +1,9 @@
 import dynamic from 'next/dynamic';
-import { Button } from '@loja-integrada/admin-components';
+import { Button, Box } from '@loja-integrada/admin-components';
+import { useState } from 'react';
+import Topbar from '../components/Topbar';
+import Sidebar from '../components/Sidebar';
+import Container from '../components/Container';
 
 const DetailsButton = dynamic<{ children: string }>(
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -11,13 +15,20 @@ const DetailsButton = dynamic<{ children: string }>(
 );
 
 export function Index() {
+  const [showOrders, setShowOrders] = useState(false);
+
   return (
     <>
-      <h1 className="mt-6 rounded border border-card-stroke mb-6 text-center mx-auto w-[200px] p-4 bg-primary-light">
-        Bem-vindo!
-      </h1>
-      <DetailsButton>Detalhes</DetailsButton>
-      <Button>Teste</Button>
+      <Topbar />
+      <Sidebar />
+      <Container>
+        <Box>
+          <Box.Content>
+            <Button onClick={() => setShowOrders(true)}>Ver pedidos</Button>
+            {showOrders && <DetailsButton>Detalhes</DetailsButton>}
+          </Box.Content>
+        </Box>
+      </Container>
     </>
   );
 }

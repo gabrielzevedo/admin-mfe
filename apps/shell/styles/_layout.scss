@@ -1,0 +1,26 @@
+.content-wrapper {
+  margin-left: env(safe-area-inset-left);
+  margin-right: env(safe-area-inset-right);
+  margin-bottom: env(safe-area-inset-bottom);
+  margin-top: env(safe-area-inset-top);
+
+  top: $topbarHeightMobile;
+  min-height: calc(100vh - #{$topbarHeightMobile});
+
+  @media (min-width: 1024px) {
+    top: $topbarHeight;
+    min-height: calc(100vh - #{$topbarHeight});
+  }
+}
+
+// Desktop Rules
+@media (min-width: 1024px) {
+  .content-wrapper {
+    left: theme('spacing.64');
+    width: calc(100% - #{theme('spacing.64')});
+  }
+
+  .action-bar {
+    margin-left: theme('spacing.64');
+  }
+}

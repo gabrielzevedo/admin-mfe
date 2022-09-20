@@ -1,0 +1,17 @@
+$topbarHeightMobile: theme('spacing.0');
+$topbarHeight: theme('spacing.16');
+
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply overflow-x-hidden bg-base-2 text-on-base antialiased font-sans;
+}
+
+@import 'layout';
